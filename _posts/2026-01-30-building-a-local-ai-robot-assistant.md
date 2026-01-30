@@ -3,14 +3,28 @@ layout: post
 title: "Building a Local AI Robot Assistant with Reachy Mini and Dell Pro Max GB10"
 date: 2026-01-30
 tags: [ai, robotics, langgraph, vllm, nvidia, edge-ai]
-description: "How I built a personal AI assistant that runs entirely on local hardware — no cloud APIs required."
+description: "How I took the NVIDIA/Hugging Face Reachy Mini demo from CES 2026 and made it run entirely on local hardware — no cloud APIs required."
 ---
 
-There's something deeply satisfying about AI that runs on hardware you can touch. No API calls disappearing into the cloud. No rate limits. No "sorry, the service is unavailable." Just silicon and software doing exactly what you tell it to.
+At CES 2026, NVIDIA and Hugging Face unveiled an incredible demo: a personal AI assistant running on a [Reachy Mini](https://www.pollen-robotics.com/) robot powered by DGX Spark. Jensen Huang showed how you could have your own "office R2D2" — an AI buddy that can see, speak, and act.
 
-This is the story of how I built a personal AI assistant using a [Reachy Mini](https://www.pollen-robotics.com/) robot and a Dell Pro Max with NVIDIA GB10, running 30B+ parameter models entirely locally.
+I wanted to take it further: **what if everything ran locally?**
+
+This is the story of how I forked the [original demo](https://huggingface.co/blog/nvidia-reachy-mini) and modified it to run 30B+ parameter models entirely on a Dell Pro Max with GB10 — no cloud APIs, no rate limits, complete privacy.
 
 ![Reachy Demo](/assets/images/reachy-demo.png)
+
+## The Original Demo
+
+The [NVIDIA/Hugging Face CES demo](https://huggingface.co/blog/nvidia-reachy-mini) is an excellent starting point. It uses:
+- **NeMo Agent Toolkit** for agent orchestration and ReAct-style tool calling
+- **Pipecat** for real-time voice and vision streaming
+- **NVIDIA Nemotron models** via cloud APIs (build.nvidia.com)
+- **Reachy Mini** as the physical embodiment
+
+The architecture routes queries intelligently: text questions go to a fast model, visual queries hit a VLM, and action requests use a ReAct agent with tools. It's well-designed and works great.
+
+But I wanted to cut the cord to the cloud.
 
 ## Why Local?
 
@@ -42,16 +56,15 @@ The Dell Pro Max workstation with NVIDIA GB10 Grace Blackwell is a beast:
 
 This is the "edge AI" dream realized: datacenter-class inference in a desktop form factor.
 
-## The Software Stack
+## What I Changed
 
-### LangGraph for Agent Orchestration
+### Swapped NeMo Agent Toolkit for LangGraph
 
-I chose [LangGraph](https://python.langchain.com/docs/langgraph/) over raw prompting or simpler agent frameworks because:
+The original demo uses [NeMo Agent Toolkit](https://github.com/NVIDIA/NeMo-Agent-Toolkit) for orchestration. It's solid, but I wanted more control over state management and memory persistence. I rebuilt the agent using [LangGraph](https://python.langchain.com/docs/langgraph/) because:
 
 1. **Stateful by design** — conversation history, user preferences, and spatial memory persist across sessions
 2. **Graph-based routing** — intent classification determines which node handles each request
-3. **Tool calling** — structured interaction with the robot hardware and external services
-4. **MCP integration** — Model Context Protocol for connecting to calendars, files, and more
+3. **MCP integration** — Model Context Protocol for connecting to calendars, files, and more
 
 The architecture:
 
@@ -76,9 +89,9 @@ The architecture:
    Tracking    History      GitHub
 ```
 
-### vLLM for Local Inference
+### Local Models via vLLM
 
-Running models locally with [vLLM](https://github.com/vllm-project/vllm) in Docker containers:
+Instead of hitting NVIDIA's cloud endpoints, I run models locally with [vLLM](https://github.com/vllm-project/vllm) in Docker containers:
 
 ```yaml
 services:
@@ -104,16 +117,16 @@ services:
 ```
 
 **Model choices:**
-- **Qwen3-VL-30B** (FP8) — Main agent with vision and tool calling. Handles complex requests, describes what it sees, and controls the robot.
-- **Phi-3 Mini** — Fast router for intent classification. Determines whether a request needs vision, tools, or simple conversation.
+- **Qwen3-VL-30B** (FP8) — Main agent with vision and tool calling. Handles complex requests, describes what it sees, and controls the robot. (Replaces Nemotron VLM)
+- **Phi-3 Mini** — Fast router for intent classification. Same as the original demo's router.
 
-The key insight: use a tiny model for routing (~50ms) and only invoke the big model when needed. Most chitchat doesn't need 30B parameters.
+The key insight from the original demo still applies: use a tiny model for routing (~50ms) and only invoke the big model when needed.
 
-## Key Features
+### Added Memory Systems
 
-### Spatial Memory
+The original demo is stateless — each conversation starts fresh. I added:
 
-The robot remembers where things are:
+**Spatial Memory** — The robot remembers where things are:
 
 > "I put my keys on the shelf by the door."
 > 
@@ -123,32 +136,13 @@ The robot remembers where things are:
 > 
 > "Your keys are on the shelf by the door — you mentioned putting them there earlier."
 
-This uses a simple but effective spatial memory system that organizes objects by room/location and persists across sessions.
+**Long-term Memory** — User preferences persist across sessions.
 
-### Face Tracking
-
-When you say "look at me," the robot uses MediaPipe for real-time face detection and smoothly tracks your face with its head servos. It maintains eye contact naturally during conversation.
-
-### Emotional Expression
-
-The robot expresses emotions through:
-- Antenna position (perked up = curious, drooped = sad)
-- Head tilt patterns
-- Movement speed and smoothness
-
-These are inferred from conversation context and explicitly called via tools when appropriate.
-
-### Vision Understanding
-
-With Qwen3-VL, the robot can actually see:
-
-> "What's on my desk?"
-> 
-> "I can see a coffee mug, a notebook, your keyboard, and what looks like a small potted plant. The mug appears to be empty — need a refill?"
+**Emotional State** — The robot tracks and expresses emotions through antenna movements and head tilts.
 
 ## What I Learned
 
-1. **Routing is everything.** A fast, accurate router makes the system feel responsive. Don't send everything to your biggest model.
+1. **The original demo's routing architecture is solid.** The three-way split (text/vision/tools) is the right abstraction. I kept it.
 
 2. **Memory is harder than it looks.** Deciding what to remember, how to index it, and when to retrieve it is its own research problem.
 
@@ -165,15 +159,19 @@ With Qwen3-VL, the robot can actually see:
 
 ## Try It Yourself
 
-The code is open source: [github.com/spencerbull/reachy-personal-assistant](https://github.com/spencerbull/reachy-personal-assistant/tree/spark-local-langgraph)
+**Original demo:** [huggingface.co/blog/nvidia-reachy-mini](https://huggingface.co/blog/nvidia-reachy-mini)
+
+**My local fork:** [github.com/spencerbull/reachy-personal-assistant](https://github.com/spencerbull/reachy-personal-assistant/tree/spark-local-langgraph)
 
 You'll need:
 - Reachy Mini (or run in simulation mode)
-- NVIDIA GPU with ~60GB+ VRAM for the full stack (or use cloud APIs)
+- NVIDIA GPU with ~60GB+ VRAM for the full stack (or use cloud APIs as fallback)
 - Python 3.11+, Docker, and patience
 
 The `spark-local-langgraph` branch has the local model setup. Check the README for detailed instructions.
 
 ---
+
+*Thanks to the teams at NVIDIA, Hugging Face, and Pollen Robotics for the original demo and open-sourcing the code. Standing on the shoulders of giants.*
 
 *Got questions or want to share your own robot projects? Find me on [GitHub](https://github.com/spencerbull).*
