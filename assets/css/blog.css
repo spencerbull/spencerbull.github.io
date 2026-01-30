@@ -1,0 +1,377 @@
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.7;
+  color: #1a1a2e;
+  background: #fff;
+}
+
+/* Navigation */
+.top-nav {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+/* Hero Header */
+.post-hero {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  padding: 4rem 0;
+  color: #fff;
+}
+
+.hero-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #fff 0%, #a8dadc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.post-date {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.post-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tag {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.post-social {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.post-social a {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.2s;
+}
+
+.post-social a:hover {
+  color: #fff;
+}
+
+/* Main Content Layout */
+.post-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Article Content - Centered Text */
+.post-content {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  text-align: center;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: #1a1a2e;
+}
+
+.post-content h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.post-content h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.post-content a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+/* Lists - Left aligned for readability */
+.post-content ul,
+.post-content ol {
+  text-align: left;
+  margin: 1.5rem auto;
+  padding-left: 1.5rem;
+  max-width: 600px;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Code Blocks */
+.post-content pre {
+  background: #1a1a2e;
+  color: #e4e4e7;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 2rem 0;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.post-content code {
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+}
+
+.post-content p code {
+  background: #f4f4f5;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #d63384;
+}
+
+/* Blockquotes */
+.post-content blockquote {
+  background: #f8f9fa;
+  border-left: 4px solid #0066cc;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #555;
+  max-width: 600px;
+  text-align: left;
+}
+
+/* Images */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 2rem auto;
+  display: block;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar */
+.post-sidebar {
+  position: sticky;
+  top: 80px;
+}
+
+.sidebar-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-card h3 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.about-card {
+  text-align: center;
+}
+
+.author-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.about-card p {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.author-title {
+  color: #666;
+  font-size: 0.85rem !important;
+}
+
+.author-bio {
+  color: #888;
+  font-size: 0.85rem !important;
+}
+
+.recent-posts ul {
+  list-style: none;
+}
+
+.recent-posts li {
+  margin-bottom: 0.75rem;
+}
+
+.recent-posts a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  display: block;
+}
+
+.recent-posts a:hover {
+  color: #0066cc;
+}
+
+/* Footer */
+.site-footer {
+  background: #f8f9fa;
+  padding: 2rem 0;
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.site-footer p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+  }
+  
+  .post-sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  .sidebar-card {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .post-title {
+    font-size: 1.8rem;
+  }
+  
+  .post-hero {
+    padding: 3rem 0;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  .post-sidebar {
+    grid-template-columns: 1fr;
+  }
+  
+  .post-content {
+    text-align: left;
+  }
+  
+  .post-content h2,
+  .post-content h3,
+  .post-content h4 {
+    text-align: left;
+  }
+}
+
+/* Syntax Highlighting (optional enhancement) */
+.highlight .k { color: #c792ea; }
+.highlight .s { color: #c3e88d; }
+.highlight .c { color: #676e95; }
+.highlight .n { color: #82aaff; }

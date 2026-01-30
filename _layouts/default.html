@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .home-hero {
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+      padding: 5rem 0;
+      color: #fff;
+      text-align: center;
+    }
+    
+    .home-hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .home-hero .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.25rem;
+    }
+    
+    .home-hero .subtitle-org {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-style: italic;
+    }
+    
+    .home-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    
+    .home-content h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      color: #1a1a2e;
+    }
+    
+    .home-content h2:first-child {
+      margin-top: 0;
+    }
+    
+    .home-content p {
+      color: #444;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+    
+    .home-content hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 3rem 0;
+    }
+    
+    .home-content a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    
+    .home-content a:hover {
+      text-decoration: underline;
+    }
+    
+    .post-list {
+      text-align: left;
+      list-style: none;
+    }
+    
+    .post-list li {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .post-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .post-list a {
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+    
+    .post-list .post-date {
+      display: block;
+      color: #888;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+    
+    .connect-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    
+    .connect-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+    
+    .connect-links svg {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="top-nav">
+    <div class="nav-container">
+      <a href="{{ '/' | relative_url }}" class="nav-brand">Spencer Bull</a>
+      <div class="nav-links">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/about' | relative_url }}">About</a>
+        <a href="https://github.com/spencerbull" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="home-hero">
+    <div class="hero-container">
+      <h1>Spencer Bull</h1>
+      <p class="subtitle">Distinguished Engineer</p>
+      <p class="subtitle-org">Dell Technologies · Client Office of the CTO</p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="home-content">
+    {{ content }}
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; {{ 'now' | date: "%Y" }} Spencer Bull. Built with Jekyll.</p>
+    </div>
+  </footer>
+</body>
+</html>
