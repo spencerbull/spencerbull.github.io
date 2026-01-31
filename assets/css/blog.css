@@ -141,13 +141,20 @@ body {
 .post-content {
   max-width: 720px;
   margin: 0 auto;
-  text-align: left;
+  text-align: left !important;
 }
 
+.post-content * {
+  text-align: left !important;
+}
+
+.post-content h1,
 .post-content h2,
 .post-content h3,
-.post-content h4 {
-  text-align: left;
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  text-align: left !important;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   color: #1a1a2e;
@@ -166,6 +173,7 @@ body {
 .post-content p {
   margin-bottom: 1.5rem;
   color: #333;
+  text-align: left !important;
 }
 
 .post-content a {
@@ -177,17 +185,37 @@ body {
   text-decoration: underline;
 }
 
-/* Lists - Left aligned for readability */
+/* Lists */
 .post-content ul,
 .post-content ol {
-  text-align: left;
-  margin: 1.5rem auto;
+  text-align: left !important;
+  margin: 1.5rem 0;
   padding-left: 1.5rem;
-  max-width: 600px;
 }
 
 .post-content li {
   margin-bottom: 0.5rem;
+  text-align: left !important;
+}
+
+/* Tables */
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  text-align: left !important;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left !important;
+}
+
+.post-content th {
+  background: #f4f4f5;
+  font-weight: 600;
 }
 
 /* Code Blocks */
@@ -198,12 +226,13 @@ body {
   border-radius: 8px;
   overflow-x: auto;
   margin: 2rem 0;
-  text-align: left;
+  text-align: left !important;
   font-size: 0.9rem;
 }
 
 .post-content code {
   font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  text-align: left !important;
 }
 
 .post-content p code {
@@ -218,16 +247,15 @@ body {
 .post-content blockquote {
   background: #f8f9fa;
   border-left: 4px solid #0066cc;
-  margin: 2rem auto;
+  margin: 2rem 0;
   padding: 1.5rem 2rem;
   border-radius: 0 8px 8px 0;
   font-style: italic;
   color: #555;
-  max-width: 600px;
-  text-align: left;
+  text-align: left !important;
 }
 
-/* Images */
+/* Images - These stay centered */
 .post-content img {
   max-width: 100%;
   height: auto;
@@ -235,6 +263,22 @@ body {
   margin: 2rem auto;
   display: block;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Emphasis text */
+.post-content em {
+  text-align: left !important;
+}
+
+.post-content strong {
+  text-align: left !important;
+}
+
+/* Horizontal rules */
+.post-content hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 3rem 0;
 }
 
 /* Sidebar */
@@ -358,10 +402,9 @@ body {
   .post-sidebar {
     grid-template-columns: 1fr;
   }
-  
 }
 
-/* Syntax Highlighting (optional enhancement) */
+/* Syntax Highlighting */
 .highlight .k { color: #c792ea; }
 .highlight .s { color: #c3e88d; }
 .highlight .c { color: #676e95; }
