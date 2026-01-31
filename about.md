@@ -7,6 +7,8 @@ title: About
 
 I'm an engineer at Dell Technologies, working in the Client Office of the CTO. I spend my time prototyping new products, working directly with customers, and turning ideas into shipping software.
 
+![Abstract neural network visualization](/assets/images/hero-abstract.png)
+
 ---
 
 ## The Journey
@@ -32,7 +34,11 @@ Now I work directly with Dell's customers, helping them bring AI from concept to
 
 ## What I Care About
 
+![Local AI illustration](/assets/images/local-ai.png)
+
 **Local AI.** I believe the future isn't everything in the cloud — it's powerful models running on hardware you own. Privacy, latency, control.
+
+![Design and engineering intersection](/assets/images/design-eng.png)
 
 **Design + Engineering.** The best products come from people who understand both. I've sat in design studios and written production code. That perspective matters.
 
