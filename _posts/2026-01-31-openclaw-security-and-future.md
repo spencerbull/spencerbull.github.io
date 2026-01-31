@@ -265,7 +265,7 @@ OpenClaw already supports this. Route different queries to different backends ba
 
 ### Personal Fine-Tuning (Coming)
 
-The next evolution is agents that adapt to *you* specifically—learning your communication style, understanding your domain expertise, remembering your preferences without explicit instruction. This isn't science fiction—it's QLoRA on a Mac Studio. The infrastructure is ready; the UX isn't.
+The next evolution is agents that adapt to *you* specifically—learning your communication style, understanding your domain expertise, remembering your preferences without explicit instruction. This isn't science fiction—it's QLoRA on a [Dell Pro Max with GB10](https://www.dell.com/en-us/shop/desktop-computers/dell-pro-max-with-gb10/spd/dell-pro-max-fcm1253-micro). The infrastructure is ready; the UX isn't.
 
 ### Agent-to-Agent Communication
 
