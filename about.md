@@ -34,20 +34,30 @@ Now I work directly with Dell's customers, helping them bring AI from concept to
 
 ## What I Care About
 
-![Local AI illustration](/assets/images/local-ai.png)
-
-**Local AI.** I believe the future isn't everything in the cloud — it's powerful models running on hardware you own. Privacy, latency, control.
-
-![Design and engineering intersection](/assets/images/design-eng.png)
-
-**Design + Engineering.** The best products come from people who understand both. I've sat in design studios and written production code. That perspective matters.
-
-**Building things that ship.** Prototypes are fun, but I measure success by what makes it to customers.
+<div class="values-grid">
+  <div class="value-card">
+    <div class="value-icon">🖥️</div>
+    <h3>Local AI</h3>
+    <p>I believe the future isn't everything in the cloud — it's powerful models running on hardware you own. Privacy, latency, control.</p>
+  </div>
+  <div class="value-card">
+    <div class="value-icon">🎨</div>
+    <h3>Design + Engineering</h3>
+    <p>The best products come from people who understand both. I've sat in design studios and written production code. That perspective matters.</p>
+  </div>
+  <div class="value-card">
+    <div class="value-icon">🚀</div>
+    <h3>Ship It</h3>
+    <p>Prototypes are fun, but I measure success by what makes it to customers.</p>
+  </div>
+</div>
 
 ---
 
 ## Get in Touch
 
-- [GitHub](https://github.com/spencerbull)
-- [LinkedIn](https://linkedin.com/in/sgbull)
-- Email: spencerbull2554@gmail.com
+<div class="connect-links">
+  <a href="https://github.com/spencerbull">GitHub</a>
+  <a href="https://linkedin.com/in/sgbull">LinkedIn</a>
+  <a href="mailto:spencerbull2554@gmail.com">Email</a>
+</div>
