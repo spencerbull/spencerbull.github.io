@@ -137,17 +137,17 @@ body {
   align-items: start;
 }
 
-/* Article Content - Centered Text */
+/* Article Content - Centered Container, Left-Aligned Text */
 .post-content {
   max-width: 720px;
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
 }
 
 .post-content h2,
 .post-content h3,
 .post-content h4 {
-  text-align: center;
+  text-align: left;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   color: #1a1a2e;
@@ -359,15 +359,6 @@ body {
     grid-template-columns: 1fr;
   }
   
-  .post-content {
-    text-align: left;
-  }
-  
-  .post-content h2,
-  .post-content h3,
-  .post-content h4 {
-    text-align: left;
-  }
 }
 
 /* Syntax Highlighting (optional enhancement) */
